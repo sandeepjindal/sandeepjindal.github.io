@@ -155,6 +155,9 @@ const contactPaths = [
   }
 ];
 
+/**
+ * Toggles the document's color theme between light and dark modes.
+ */
 function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
 
@@ -182,6 +185,13 @@ function ThemeToggle() {
   );
 }
 
+/**
+ * Reveals content with a scroll-triggered fade and upward motion.
+ *
+ * @param children - The content to animate.
+ * @param className - Additional classes applied to the animated container.
+ * @param delay - The animation delay in seconds.
+ */
 function FadeIn({
   children,
   className = "",
@@ -204,6 +214,13 @@ function FadeIn({
   );
 }
 
+/**
+ * Renders a centered section heading with an eyebrow label, title, and supporting text.
+ *
+ * @param eyebrow - The short label displayed above the title
+ * @param title - The section title
+ * @param copy - The supporting description displayed below the title
+ */
 function SectionHeading({
   eyebrow,
   title,
@@ -224,6 +241,9 @@ function SectionHeading({
   );
 }
 
+/**
+ * Renders the fixed site header with navigation, GitHub access, and theme controls.
+ */
 function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b hairline bg-[color-mix(in_srgb,var(--background)_82%,transparent)] backdrop-blur-xl">
@@ -257,6 +277,9 @@ function Header() {
   );
 }
 
+/**
+ * Renders the portfolio hero section with an introduction, contact links, and profile summary.
+ */
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden pt-24 md:pt-28">
@@ -347,6 +370,9 @@ function Hero() {
   );
 }
 
+/**
+ * Renders the About section with an introductory heading and a grid of guiding principles.
+ */
 function About() {
   return (
     <section id="about" className="border-t hairline py-20 md:py-28">
@@ -373,6 +399,9 @@ function About() {
   );
 }
 
+/**
+ * Renders a timeline of professional experience entries.
+ */
 function Experience() {
   return (
     <section id="experience" className="py-20 md:py-28">
@@ -407,6 +436,9 @@ function Experience() {
   );
 }
 
+/**
+ * Displays featured project cards with descriptions, technology tags, and links.
+ */
 function Projects() {
   const accentClasses = useMemo(
     () => ({
@@ -461,6 +493,9 @@ function Projects() {
   );
 }
 
+/**
+ * Renders the skills section with an overview and a list of technical skills.
+ */
 function Skills() {
   return (
     <section id="skills" className="py-20 md:py-28">
@@ -490,6 +525,9 @@ function Skills() {
   );
 }
 
+/**
+ * Renders the contact section with coaching, newsletter, and contact options.
+ */
 function Contact() {
   return (
     <section id="contact" className="border-t hairline py-20 md:py-28">
@@ -547,6 +585,9 @@ function Contact() {
   );
 }
 
+/**
+ * Renders the site footer with the current year and external profile links.
+ */
 function Footer() {
   return (
     <footer className="border-t hairline py-8">
@@ -574,6 +615,9 @@ function Footer() {
   );
 }
 
+/**
+ * Renders the portfolio homepage and its primary sections.
+ */
 export default function Home() {
   return (
     <main>
