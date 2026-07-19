@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --background: #f7f4ee;
+  --foreground: #161514;
+  --muted: #6a625a;
+  --surface: #fffdf8;
+  --surface-strong: #ffffff;
+  --border: #ded6ca;
+  --accent: #2563eb;
+  --accent-2: #0f766e;
+  --accent-3: #9f1239;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #090909;
+  --foreground: #f7f5ef;
+  --muted: #b6aea4;
+  --surface: #121212;
+  --surface-strong: #181818;
+  --border: #302d29;
+  --accent: #60a5fa;
+  --accent-2: #2dd4bf;
+  --accent-3: #fb7185;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent), transparent 28rem),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  letter-spacing: 0;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.container-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.hairline {
+  border-color: color-mix(in srgb, var(--border) 82%, transparent);
+}
+
+.surface {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 84%, transparent);
+  box-shadow: 0 24px 80px color-mix(in srgb, #000 9%, transparent);
+}
+
+.dark .surface {
+  box-shadow: 0 24px 80px color-mix(in srgb, #000 38%, transparent);
+}
+
+.kbd-grid {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--border) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--border) 45%, transparent) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
