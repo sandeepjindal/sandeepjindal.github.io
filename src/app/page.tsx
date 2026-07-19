@@ -4,11 +4,13 @@ import {
   ArrowUpRight,
   BriefcaseBusiness,
   GitBranch,
+  Handshake,
   IdCard,
   Mail,
   MapPin,
   Moon,
   Network,
+  Newspaper,
   Rocket,
   Sparkles,
   Sun,
@@ -34,6 +36,27 @@ const profile = {
 };
 
 const nav = ["About", "Experience", "Projects", "Skills", "Contact"];
+
+const spotlightLinks = [
+  {
+    label: "LinkedIn",
+    href: profile.linkedin,
+    icon: IdCard,
+    description: "Leadership background and professional updates"
+  },
+  {
+    label: "Substack",
+    href: profile.newsletter,
+    icon: Newspaper,
+    description: "Writing on growth, engineering, AI, and leadership"
+  },
+  {
+    label: "Advisory / fractional",
+    href: profile.coaching,
+    icon: Handshake,
+    description: "Open for advisory, fractional engineering, and coaching roles"
+  }
+];
 
 const stats = [
   { label: "Public repos", value: "62" },
@@ -110,6 +133,8 @@ const skills = [
   "JavaScript",
   "Kafka",
   "Kubernetes",
+  "Advisory",
+  "Fractional leadership",
   "Mentoring"
 ];
 
@@ -133,6 +158,20 @@ const principles = [
 
 const contactPaths = [
   {
+    title: "Advisory and fractional roles",
+    text: "Open to advisory, fractional engineering leadership, architecture reviews, and senior team coaching.",
+    href: profile.coaching,
+    label: "Discuss availability",
+    icon: Handshake
+  },
+  {
+    title: "LinkedIn",
+    text: "Connect for professional context, engineering leadership updates, and collaboration conversations.",
+    href: profile.linkedin,
+    label: "Connect on LinkedIn",
+    icon: IdCard
+  },
+  {
     title: "Engineering coaching",
     text: "Book a focused session for career strategy, engineering leadership, architecture judgment, or interview preparation.",
     href: profile.coaching,
@@ -144,7 +183,7 @@ const contactPaths = [
     text: "Read notes on technology, AI, engineering craft, leadership, and personal growth.",
     href: profile.newsletter,
     label: "Read Growwwithme",
-    icon: Sparkles
+    icon: Newspaper
   },
   {
     title: "Direct conversation",
@@ -263,6 +302,24 @@ function Header() {
         </nav>
         <div className="flex items-center gap-2">
           <a
+            href={profile.linkedin}
+            aria-label="LinkedIn profile"
+            title="LinkedIn profile"
+            className="hidden h-10 items-center justify-center gap-2 rounded-full border hairline bg-[var(--surface)] px-4 text-sm font-medium transition hover:border-[var(--accent)] hover:text-[var(--accent)] sm:inline-flex"
+          >
+            <IdCard size={17} />
+            LinkedIn
+          </a>
+          <a
+            href={profile.newsletter}
+            aria-label="Substack newsletter"
+            title="Substack newsletter"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-full border hairline bg-[color-mix(in_srgb,var(--accent)_11%,var(--surface))] px-3 text-sm font-medium transition hover:border-[var(--accent)] hover:text-[var(--accent)] sm:px-4"
+          >
+            <Newspaper size={17} />
+            <span className="hidden sm:inline">Substack</span>
+          </a>
+          <a
             href={profile.github}
             aria-label="GitHub profile"
             title="GitHub profile"
@@ -292,30 +349,55 @@ function Hero() {
         >
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border hairline bg-[var(--surface)] px-3 py-2 text-sm text-[var(--muted)]">
             <MapPin size={15} />
-            London · {profile.company} · Open to meaningful engineering conversations
+            London · {profile.company} · Open for advisory and fractional roles
           </div>
           <h1 className="text-balance text-4xl font-semibold leading-[1.04] sm:text-5xl md:text-7xl">
             Building resilient products, systems, and engineering teams.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)] md:text-xl">
             I am Sandeep Jindal, an engineering leader and software engineer focused on
-            scalable platforms, practical AI, and the human systems that make great software last.
+            scalable platforms, practical AI, advisory work, and the human systems that make great software last.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={`mailto:${profile.email}`}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--foreground)] px-6 font-medium text-[var(--background)] transition hover:scale-[1.02]"
-            >
-              <Mail size={18} />
-              Contact
-            </a>
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
             <a
               href={profile.linkedin}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border hairline bg-[var(--surface)] px-6 font-medium transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--foreground)] px-6 font-medium text-[var(--background)] transition hover:scale-[1.02]"
             >
               <IdCard size={18} />
               LinkedIn
             </a>
+            <a
+              href={profile.newsletter}
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border hairline bg-[var(--surface)] px-6 font-medium transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            >
+              <Newspaper size={18} />
+              Substack
+            </a>
+            <a
+              href={profile.coaching}
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border hairline bg-[var(--surface)] px-6 font-medium transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            >
+              <Handshake size={18} />
+              Advisory
+            </a>
+          </div>
+          <div className="mt-5 hidden gap-3 md:grid md:grid-cols-3">
+            {spotlightLinks.map((item) => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="rounded-[8px] border hairline bg-[color-mix(in_srgb,var(--surface)_74%,transparent)] p-4 transition hover:border-[var(--accent)]"
+                >
+                  <div className="flex items-center gap-2 font-medium">
+                    <Icon size={17} className="text-[var(--accent)]" />
+                    {item.label}
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{item.description}</p>
+                </a>
+              );
+            })}
           </div>
         </motion.div>
 
@@ -380,7 +462,7 @@ function About() {
         <SectionHeading
           eyebrow="About"
           title="A builder with a leader’s operating system."
-          copy="Public profiles point to a career across Meta, Agoda, Swiggy, Oracle, HelloFresh, and founder/mentor work. The connective tissue is durable engineering: clear systems, clear teams, clear tradeoffs."
+          copy="Public profiles point to a career across Meta, Agoda, Swiggy, Oracle, HelloFresh, and founder/mentor work. I am open to advisory and fractional roles where durable systems, sharp product judgment, and senior engineering leadership matter."
         />
         <div className="grid gap-4 md:grid-cols-3">
           {principles.map((item, index) => {
@@ -409,7 +491,7 @@ function Experience() {
         <SectionHeading
           eyebrow="Experience"
           title="From product scale to platform judgment."
-          copy="A timeline shaped around confirmed public signals, with exact dates intentionally left out where they are not public."
+          copy="A timeline shaped around confirmed public signals, with exact dates intentionally left out where they are not public. Available for advisory and fractional leadership conversations."
         />
         <div className="mx-auto max-w-3xl">
           {experience.map((item, index) => {
@@ -507,7 +589,7 @@ function Skills() {
           </h2>
           <p className="mt-5 text-lg leading-8 text-[var(--muted)]">
             The strongest signal across the public footprint is a mix of backend foundations,
-            AI curiosity, architecture writing, and coaching.
+            AI curiosity, architecture writing, coaching, and advisory-level engineering judgment.
           </p>
         </FadeIn>
         <FadeIn delay={0.1} className="flex flex-wrap gap-3">
@@ -537,32 +619,32 @@ function Contact() {
             <div>
               <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] opacity-70">Contact</p>
               <h2 className="text-balance text-3xl font-semibold md:text-5xl">
-                Reach out for systems, teams, writing, or coaching.
+                Open for advisory, fractional roles, writing, and coaching.
               </h2>
               <p className="mt-4 max-w-2xl leading-7 opacity-75">
                 Best fit: deep engineering problems, leadership conversations, mentoring,
-                practical AI/product ideas, and focused career growth.
+                practical AI/product ideas, focused career growth, and fractional engineering leadership.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
               <a
-                href={profile.coaching}
+                href={profile.linkedin}
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--background)] px-5 font-medium text-[var(--foreground)]"
               >
-                <UsersRound size={18} />
-                Coaching
+                <IdCard size={18} />
+                LinkedIn
               </a>
               <a
                 href={profile.newsletter}
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--background)_30%,transparent)] px-5 font-medium"
               >
-                <Sparkles size={18} />
-                Newsletter
+                <Newspaper size={18} />
+                Substack
               </a>
             </div>
           </div>
         </FadeIn>
-        <div className="mt-4 grid gap-4 md:grid-cols-3">
+        <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
           {contactPaths.map((item, index) => {
             const Icon = item.icon;
             return (
@@ -570,7 +652,7 @@ function Contact() {
                 <a href={item.href} className="surface block h-full rounded-[8px] p-5 transition hover:-translate-y-1 hover:border-[var(--accent)]">
                   <Icon className="mb-4 text-[var(--accent)]" size={22} />
                   <h3 className="text-lg font-semibold">{item.title}</h3>
-                  <p className="mt-2 min-h-24 leading-7 text-[var(--muted)]">{item.text}</p>
+                  <p className="mt-2 min-h-28 leading-7 text-[var(--muted)] lg:min-h-40">{item.text}</p>
                   <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)]">
                     {item.label}
                     <ArrowUpRight size={16} />
@@ -604,10 +686,10 @@ function Footer() {
             Website
           </a>
           <a href={profile.newsletter} className="transition hover:text-[var(--foreground)]">
-            Newsletter
+            Substack
           </a>
           <a href={profile.coaching} className="transition hover:text-[var(--foreground)]">
-            Coaching
+            Advisory
           </a>
         </div>
       </div>
