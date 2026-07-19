@@ -4,7 +4,6 @@ import {
   ArrowUpRight,
   BriefcaseBusiness,
   GitBranch,
-  Globe2,
   IdCard,
   Mail,
   MapPin,
@@ -29,6 +28,8 @@ const profile = {
   github: "https://github.com/sandeepjindal",
   linkedin: "https://www.linkedin.com/in/jindalsandeep47/",
   website: "https://www.zeroentropy.co.in/",
+  newsletter: "https://growwwithme.substack.com/?utm_campaign=profile_chips",
+  coaching: "https://topmate.io/sandeep_jindal",
   avatar: "https://avatars.githubusercontent.com/u/1520955?v=4"
 };
 
@@ -59,7 +60,7 @@ const experience = [
     title: "Founder and mentor",
     company: "Zero Entropy",
     detail:
-      "Exploring AI-native learning, practical architecture, career mentoring, and writing for engineers who build at scale.",
+      "Exploring AI-native learning, practical architecture, career mentoring, and writing for engineers who want to grow with intention.",
     icon: Sparkles
   }
 ];
@@ -127,6 +128,30 @@ const principles = [
     title: "Useful AI",
     text: "Treat AI as leverage for thinking, learning, prototyping, and code intent rather than a shortcut around engineering judgment.",
     icon: Rocket
+  }
+];
+
+const contactPaths = [
+  {
+    title: "Engineering coaching",
+    text: "Book a focused session for career strategy, engineering leadership, architecture judgment, or interview preparation.",
+    href: profile.coaching,
+    label: "Book on Topmate",
+    icon: UsersRound
+  },
+  {
+    title: "Newsletter",
+    text: "Read notes on technology, AI, engineering craft, leadership, and personal growth.",
+    href: profile.newsletter,
+    label: "Read Growwwithme",
+    icon: Sparkles
+  },
+  {
+    title: "Direct conversation",
+    text: "Reach out for thoughtful engineering problems, mentoring ideas, product conversations, or collaboration.",
+    href: `mailto:${profile.email}`,
+    label: "Send email",
+    icon: Mail
   }
 ];
 
@@ -474,31 +499,49 @@ function Contact() {
             <div>
               <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] opacity-70">Contact</p>
               <h2 className="text-balance text-3xl font-semibold md:text-5xl">
-                Let’s talk about systems, teams, or AI-shaped products.
+                Reach out for systems, teams, writing, or coaching.
               </h2>
               <p className="mt-4 max-w-2xl leading-7 opacity-75">
-                Best fit: deep engineering problems, leadership conversations, mentoring, and
-                practical product ideas that need both taste and execution.
+                Best fit: deep engineering problems, leadership conversations, mentoring,
+                practical AI/product ideas, and focused career growth.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
               <a
-                href={`mailto:${profile.email}`}
+                href={profile.coaching}
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--background)] px-5 font-medium text-[var(--foreground)]"
               >
-                <Mail size={18} />
-                Email
+                <UsersRound size={18} />
+                Coaching
               </a>
               <a
-                href={profile.website}
+                href={profile.newsletter}
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--background)_30%,transparent)] px-5 font-medium"
               >
-                <Globe2 size={18} />
-                Zero Entropy
+                <Sparkles size={18} />
+                Newsletter
               </a>
             </div>
           </div>
         </FadeIn>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          {contactPaths.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <FadeIn key={item.title} delay={index * 0.08}>
+                <a href={item.href} className="surface block h-full rounded-[8px] p-5 transition hover:-translate-y-1 hover:border-[var(--accent)]">
+                  <Icon className="mb-4 text-[var(--accent)]" size={22} />
+                  <h3 className="text-lg font-semibold">{item.title}</h3>
+                  <p className="mt-2 min-h-24 leading-7 text-[var(--muted)]">{item.text}</p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)]">
+                    {item.label}
+                    <ArrowUpRight size={16} />
+                  </span>
+                </a>
+              </FadeIn>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
@@ -518,6 +561,12 @@ function Footer() {
           </a>
           <a href={profile.website} className="transition hover:text-[var(--foreground)]">
             Website
+          </a>
+          <a href={profile.newsletter} className="transition hover:text-[var(--foreground)]">
+            Newsletter
+          </a>
+          <a href={profile.coaching} className="transition hover:text-[var(--foreground)]">
+            Coaching
           </a>
         </div>
       </div>
